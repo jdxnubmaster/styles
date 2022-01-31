@@ -1,0 +1,46 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.button {
+  background-color: #efefef;
+  border: 1px solid #000;
+  border-radius: 3px;
+  font-weight: 500;
+  padding: 5rem;
+}
+
+.cb-container-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+h1, h2, h3, h4, h5 {
+  font-size: 1.4rem;
+  line-height: 1.4;
+  color: blue;
+  margin: 0;
+}
+
+P {
+  font-size: 1rem;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+nav ul li {
+  display: inline-block;
+  margin-left: -2px;
+  margin-right: 2em;
+}
+
+.avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 4px;
+}
