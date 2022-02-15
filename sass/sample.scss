@@ -112,10 +112,13 @@ body div{
   
 .wrapper .field {
     @include unify-parent("input") {
-        /* ... */
+        box-shadow: none;
+        border-radius: 5px;
     }
     @include unify-parent("select") {
-        /* ... */
+      box-shadow: none;
+      border-radius: 5px;
+      -webkit-backdrop-filter: none;
     }
 }
 
@@ -170,7 +173,7 @@ $icons:
   .icon-#{$name}:before {
     display: inline-block;
     font-family: "Icon Font";
-    content: $glyph;
+    content: $glyph; 
     font-size: $size;
   }
 }
