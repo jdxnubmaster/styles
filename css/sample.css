@@ -64,11 +64,13 @@ body div h1, body div h2, body div h3, body div h4, body div h5, body div h6 {
 }
 
 .wrapper input.field {
-  /* ... */
+  box-shadow: none;
+  border-radius: 5px;
 }
 
 .wrapper select.field {
-  /* ... */
+  box-shadow: none;
+  border-radius: 5px;
 }
 
 .next {
