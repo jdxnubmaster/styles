@@ -1,0 +1,198 @@
+@use "sass:map";
+@use "sass:math";
+@use "sass:meta";
+@use "sass:selector";
+@use "../components/media_queries" as mq;
+@import "../components/variables";
+@import "../components/resets";
+@import "../components/fonts";
+
+@mixin last-child() {
+    &:last-of-type {
+      @content
+    }
+}
+
+@mixin first-child() {
+    &:first-of-type {
+        @content
+    }
+}
+
+@mixin gridCenter(){
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 2rem;
+}
+
+@function weights($f_weights){
+    @return map-get($font_weights , $f_weights )
+}
+
+@function text_size($f_sizes){
+    @return map-get($paragraph_sizes , $f_sizes)
+}
+
+@function heading_sizes($h_sizes){
+    @return map-get($heading_sizes , $h_sizes)
+}
+
+body{
+    font-weight: weights(regular);
+    color: $text-color;
+    background-color: #efefef;
+
+    .align-center{
+        text-align: center;
+    }
+}
+body div{
+    max-width: $max-width;
+    margin: $center-container;
+
+    p, li, span{
+        font-size: text_size( med-p );
+        font-weight: weights( regular );
+        font-family: $font_paragraph;
+        line-height: $line-height;
+        color: $text-color;
+    }
+    h1, h2, h3, h4, h5, h6{
+        color: $text-primary-color;
+        font-size: heading_sizes( xl-h );
+        font-family: $font_head;
+        line-height: $line-height;
+    }
+}
+.main{ 
+
+    @include gridCenter;
+    
+    p{
+        color: $text-color;
+        font-weight: weights( medium );
+    }
+
+    #{&}__paragraph {
+        font-size: text_size( med-p );
+        font-weight: weights(regular );
+        transition: $transition;
+        
+
+        &:hover {
+            color: $text-primary-color;
+            cursor: pointer;
+        }
+    }
+}
+
+.error:hover {
+    background-color: #fee;
+} 
+.error--serious {
+    @extend .error;
+    border-width: 3px;
+}
+
+@mixin inset-divider-offset($offset, $padding) {
+    $divider-offset: (2 * $padding) + $offset;
+    @debug "divider offset: #{$divider-offset}";
+  
+    margin-left: $divider-offset;
+    width: calc(100% - #{$divider-offset});
+}
+.offset-margin{
+    @include inset-divider-offset(100px, 10px);
+}
+@mixin unify-parent($child) {
+    @at-root #{selector.unify(&, $child)} {
+      @content;
+    }
+}
+  
+.wrapper .field {
+    @include unify-parent("input") {
+        /* ... */
+    }
+    @include unify-parent("select") {
+        /* ... */
+    }
+}
+
+@mixin triangle($size, $color, $direction) {
+    height: 100px;
+    width: 100px;
+  
+    border-color: transparent;
+    border-style: solid;
+    border-width: math.div($size, 2);
+  
+    @if $direction == up {
+      border-bottom-color: $color;
+    } @else if $direction == right {
+      border-left-color: $color;
+    } @else if $direction == down {
+      border-top-color: $color;
+    } @else if $direction == left {
+      border-right-color: $color;
+    } @else {
+      @error "Unknown direction #{$direction}.";
+    }
+  }
+  
+.next {
+    @include triangle(100px, rgb(51, 50, 133), up);
+}
+$sizes: 40px, 50px, 80px;
+
+@each $size in $sizes {
+  .icon-#{$size} {
+    font-size: $size;
+    height: $size;
+    width: $size;
+  }
+}
+$icons: ("eye": "\f112", "start": "\f12e", "stop": "\f12f");
+
+@each $name, $glyph in $icons {
+  .icon-#{$name}:before {
+    display: inline-block;
+    font-family: "Icon Font";
+    content: $glyph;
+  }
+}
+$icons:
+  "eye" "\f112" 12px,
+  "start" "\f12e" 16px,
+  "stop" "\f12f" 10px;
+
+@each $name, $glyph, $size in $icons {
+  .icon-#{$name}:before {
+    display: inline-block;
+    font-family: "Icon Font";
+    content: $glyph;
+    font-size: $size;
+  }
+}
+/// Divides `$value` by `$ratio` until it's below `$base`.
+@function scale-below($value, $base, $ratio: 1.618) {
+    @while $value > $base {
+      $value: math.div($value, $ratio);
+    }
+    @return $value;
+}
+
+$normal-font-size: 16px;
+    .super {
+    font-size: scale-below(20px, 16px);
+}
+// dark-theme/_code.scss
+$border-contrast: false !default;
+
+code {
+  background-color: #6b717f;
+  color: #d2e1dd;
+  @if $border-contrast {
+    border-color: #dadbdf;
+  }
+}

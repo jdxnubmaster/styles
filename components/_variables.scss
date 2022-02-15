@@ -1,0 +1,47 @@
+$font_sizes: (
+    "p-regular": 1rem, 
+    "p-medium":  1.2rem, 
+    "h-regular": 1.4rem, 
+    "h-medium":  1.7rem, 
+    "h-large":   2.4rem
+);
+// Font-sizes
+$paragraph_sizes: (
+    "reg-p": 1em,
+    "med-p": 1.2em,
+    "lg-p": 1.4em
+);
+
+$heading_sizes: (
+    "reg-h": 1em,
+    "med-h": 1.2em,
+    "lg-h": 1.4em,
+    "xl-h": 2em
+);
+
+// Font-weights
+$font_weights: (
+    "regular": 400,
+    "medium": 500,
+    "bold":700
+);
+
+// Colors
+$primary-color: #272727;
+$text-primary-color: #ff652f;
+$text-color: #2e2e2e;
+
+// Font Family
+$font_head: 'Comforter', cursive;
+$font_paragraph: 'Open Sans';
+
+// Width
+$max-width: 1200px;
+$center-container: 0 auto;
+
+// General styles
+$line-height: 1.4;
+$align-left: left;
+$align-center: center;
+$def-padding: 2rem;
+$transition: all 0.5s ease;
